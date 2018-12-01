@@ -15,7 +15,7 @@ public class LevelGenerator : MonoBehaviour {
     private System.Random prng;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         if (Seed == 0) prng = new System.Random();
         else prng = new System.Random(Seed);
         int[,] map = generate();

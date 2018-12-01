@@ -5,10 +5,22 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour {
 
     private Rigidbody2D body;
+    private Vector2Int start_point;
+    public UnityEngine.Tilemaps.Tilemap tilemap;
+    public UnityEngine.Tilemaps.TileBase tombTile;
+
+    Vector2Int roundToGrid(Vector2 point)
+    {
+        return new Vector2Int(
+            Mathf.RoundToInt(point.x - 0.5f),
+            Mathf.RoundToInt(point.y - 0.5f)
+        );
+    }
 
 	// Use this for initialization
 	void Start () {
         body = this.GetComponent<Rigidbody2D>();
+        start_point = roundToGrid(this.transform.position);
 	}
 	
     Vector2 JumpDirection()
@@ -48,5 +60,23 @@ public class PlayerInput : MonoBehaviour {
                 body.velocity = body.velocity + direction;
             }
         }
+
+        if (Input.GetButton("Die")) {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Vector2Int point = roundToGrid(this.transform.position);
+        if (point == start_point) return;
+
+        tilemap.SetTile(new Vector3Int(point.x, point.y, 0), tombTile);
+        this.transform.position = new Vector2(start_point.x + 0.5f, start_point.y + 0.5f);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+                    
     }
 }
