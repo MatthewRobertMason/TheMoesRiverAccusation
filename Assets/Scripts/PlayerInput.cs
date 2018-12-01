@@ -77,10 +77,17 @@ public class PlayerInput : MonoBehaviour {
         this.transform.position = new Vector2(start_point.x + 0.5f, start_point.y + 0.5f);
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Tilemap tile = collider.gameObject.GetComponent<Tilemap>();
-        Debug.LogFormat("Found Trap {0} {1}", tile == null, tile == traps);
-        if (tile == traps) Die();
+        TrapCollider trap_script = collision.gameObject.GetComponent<TrapCollider>();
+        if (trap_script != null) Die();
     }
+
+    //private void OnTriggerEnter2D(Collider2D collider)
+    //{
+    //    TrapCollider trap_script = collider.gameObject.GetComponent<TrapCollider>();
+    //    Tilemap tile = collider.gameObject.GetComponent<Tilemap>();
+    //    Debug.LogFormat("Found Trap {0} {1} {2}", tile == null, tile == traps, trap_script != null);
+    ////    if (tile == traps) Die();
+    //}
 }
