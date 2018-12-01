@@ -14,6 +14,7 @@ namespace UnityEngine.Tilemaps
     [CreateAssetMenu(fileName = "New Animated Tile", menuName = "Tiles/Animated Tile")]
     public class AnimatedTile : TileBase
     {
+        public GameObject m_DefaultGameObject;
         public Sprite[] m_AnimatedSprites;
         public float m_MinSpeed = 1f;
         public float m_MaxSpeed = 1f;
@@ -24,6 +25,8 @@ namespace UnityEngine.Tilemaps
         {
             tileData.transform = Matrix4x4.identity;
             tileData.color = Color.white;
+            tileData.gameObject = m_DefaultGameObject;
+
             if (m_AnimatedSprites != null && m_AnimatedSprites.Length > 0)
             {
                 tileData.sprite = m_AnimatedSprites[m_AnimatedSprites.Length - 1];
@@ -52,6 +55,8 @@ namespace UnityEngine.Tilemaps
 
         public override void OnInspectorGUI()
         {
+            tile.m_DefaultGameObject = EditorGUILayout.ObjectField("Default Game Object", tile.m_DefaultGameObject, typeof(GameObject), false) as GameObject;
+
             EditorGUI.BeginChangeCheck();
             int count = EditorGUILayout.DelayedIntField("Number of Animated Sprites", tile.m_AnimatedSprites != null ? tile.m_AnimatedSprites.Length : 0);
             if (count < 0)
