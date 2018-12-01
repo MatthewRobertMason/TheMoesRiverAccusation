@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Name: Spikes
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300020, guid: 5fcc9d92e149c354ca40db10655a56d1, type: 3}
-  m_DefaultGameObject: {fileID: 1474020849741860, guid: 8945714da53db2742aa2418c10bf9719,
+  m_DefaultGameObject: {fileID: 1265116582388578, guid: b35007d4607be4e4c96fb16edd8fba4c,
     type: 2}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Neighbors: 0000000000000000000000000000000000000000000000000000000000000000
     m_Sprites:
     - {fileID: 21300020, guid: 5fcc9d92e149c354ca40db10655a56d1, type: 3}
-    m_GameObject: {fileID: 1474020849741860, guid: 8945714da53db2742aa2418c10bf9719,
+    m_GameObject: {fileID: 1265116582388578, guid: b35007d4607be4e4c96fb16edd8fba4c,
       type: 2}
     m_AnimationSpeed: 1
     m_PerlinScale: 0.5
