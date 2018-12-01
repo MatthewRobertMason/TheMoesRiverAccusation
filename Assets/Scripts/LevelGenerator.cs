@@ -62,7 +62,7 @@ public class LevelGenerator : MonoBehaviour {
 
         for(int yy = bottom; yy < top; yy++) {
             if(map[2, yy] != 0) {
-                player.transform.SetPositionAndRotation(new Vector3(2.5f, yy - bottom), new Quaternion());
+                player.transform.SetPositionAndRotation(new Vector3(2.5f, yy - bottom + 0.1f), new Quaternion());
                 break;
             }
         }

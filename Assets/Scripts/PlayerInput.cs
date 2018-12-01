@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerInput : MonoBehaviour {
 
     private Rigidbody2D body;
     private Vector2Int start_point;
-    public UnityEngine.Tilemaps.Tilemap tilemap;
-    public UnityEngine.Tilemaps.TileBase tombTile;
+    public Tilemap terrain;
+    public Tilemap traps;
+    public TileBase tombTile;
 
     Vector2Int roundToGrid(Vector2 point)
     {
@@ -69,14 +71,16 @@ public class PlayerInput : MonoBehaviour {
     void Die()
     {
         Vector2Int point = roundToGrid(this.transform.position);
-        if (point == start_point) return;
+        if ((point - start_point).magnitude < 3) return;
 
-        tilemap.SetTile(new Vector3Int(point.x, point.y, 0), tombTile);
+        terrain.SetTile(new Vector3Int(point.x, point.y, 0), tombTile);
         this.transform.position = new Vector2(start_point.x + 0.5f, start_point.y + 0.5f);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-                    
+        Tilemap tile = collider.gameObject.GetComponent<Tilemap>();
+        Debug.LogFormat("Found Trap {0} {1}", tile == null, tile == traps);
+        if (tile == traps) Die();
     }
 }
