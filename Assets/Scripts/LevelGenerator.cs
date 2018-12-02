@@ -55,14 +55,20 @@ public class LevelGenerator : MonoBehaviour {
                 if (map[xx, yy] == 0) {
                     Vector3Int index = new Vector3Int(xx, yy-bottom, 0);
                     tilemap.SetTile(index, ground);
-                    tilemap.SetColliderType(index, UnityEngine.Tilemaps.Tile.ColliderType.Grid);
                 }
             }
         }
 
-        for(int yy = bottom; yy < top; yy++) {
-            if(map[2, yy] != 0) {
-                player.transform.SetPositionAndRotation(new Vector3(2.5f, yy - bottom + 0.1f), new Quaternion());
+        for (int xx = 0; xx < 3; xx++) {
+            for (int yy = bottom; yy < top; yy++) {
+                Vector3Int index = new Vector3Int(LevelLength + xx, yy - bottom, 0);
+                tilemap.SetTile(index, ground);
+            }
+        }
+
+        for (int yy = bottom, xx = 0; yy < top; yy++, xx++) {
+            if(map[xx, yy] != 0) {
+                player.transform.SetPositionAndRotation(new Vector3(xx+1, yy - bottom + 5), new Quaternion());
                 break;
             }
         }
@@ -97,6 +103,33 @@ public class LevelGenerator : MonoBehaviour {
         }
     }
 
+    int Clamp(int a, int b, int c)
+    {
+        return Math.Min(c, Math.Max(a, b));
+    }
+
+    int[,] smooth_grid(int[,] grid, int smooth_range) {
+        int width = grid.GetLength(0);
+        int height = grid.GetLength(1);
+        int[,] smoothed = new int[width, height];
+    
+        for(int xx = 0; xx < width; xx++){
+            for(int yy = 0; yy < height; yy++){
+                int total = 0;
+                int hit = 0;
+                for(int in_x = Clamp(xx - smooth_range, 0, width-1); in_x <= Clamp(xx + smooth_range, 0, width-1); in_x++){
+                    for(int in_y = Clamp(yy - smooth_range, 0, height-1); in_y <= Clamp(yy + smooth_range, 0, height-1); in_y++){
+                        total += grid[in_x, in_y];
+                        hit += 1;
+                    }
+                }
+                smoothed[xx, yy] = Mathf.RoundToInt((float)total/(float)hit);
+            }
+        }
+
+        return smoothed;
+    }
+
     int[,] generate() { 
         int[,] grid = new int[LevelLength, LevelHeight];
         int width = LevelLength;
@@ -106,23 +139,30 @@ public class LevelGenerator : MonoBehaviour {
         List<Point> lines = new List<Point>();
         for(int start = 0; start < LevelLength-40; start += prng.Next(5, 50)){
             lines.Add(new Point(start, prev));
-            prev = Math.Min(LevelHeight - 1, Math.Max(0, prev + prng.Next(-10, 10)));
+            prev = Math.Min(LevelHeight - 1, Math.Max(0, prev + prng.Next(-100, 50)));
         }
         lines.Add(new Point(width, prev));
 
-        int nextWidth = prng.Next(5, 40);
-        for(int start = 0; start < width;) {
-            int bwidth = nextWidth;
-            nextWidth = prng.Next(5, 20);
-            int bheight = prng.Next(20, 30);
-            int up = prng.Next(bheight/4, bheight / 2);
+        int nextWidth = prng.Next(5, 20);
+        int prev_height = Height(lines, nextWidth);
+        for(int start = nextWidth; start < width;) {
 
-            Square(grid, start, Height(lines, start) - up, bwidth, bheight);
+            int bwidth = nextWidth;
+            nextWidth = prng.Next(2, 8);
 
             int step = ((bwidth + nextWidth) >> 1);
-            start += prng.Next(step / 2, step);
+            int nextStart = start + prng.Next(step / 2, step);
+
+
+            int bheight = Math.Max(prng.Next(3, 12), 1 + prev_height - Height(lines, start));
+            int up = prng.Next(bheight/4, bheight / 2);
+            prev_height = Height(lines, start) + up;
+
+            Square(grid, start, Height(lines, start) + up, bwidth, bheight);
+
+            start = nextStart;
         }
 
-        return grid;
+        return smooth_grid(grid, 1);
     }
 }
