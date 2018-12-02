@@ -22,11 +22,15 @@ public class PlayerInput : MonoBehaviour {
 
     [Range(0, 20)]
     public int GenerateViceraOnDeathAmount = 5;
+
+    [Range(0.0f, 60.0f)]
+    public float ViceraLifespan = 15.0f;
     public GameObject[] Viscera;
 
     private bool jumping = false;
     private bool isRunning = false;
     private bool isColliding = false;
+    private bool isDead = false;
 
     private Animator animator = null;
     private SpriteRenderer spriteRenderer = null;
@@ -153,6 +157,7 @@ public class PlayerInput : MonoBehaviour {
 
     void Die()
     {
+        if (isDead) return;
         body.velocity = Vector2.zero;
 
         // Can't die on the starting line
@@ -163,19 +168,23 @@ public class PlayerInput : MonoBehaviour {
         Scoreboard.LostLife();
 
         // Start death animations
-        if ((Viscera != null) && (Viscera.Length > 0)) {
+        if ((Viscera != null) && (Viscera.Length > 0) && (!isDead))
+        {
             int randomInt = 0;
-            for (int i = 0; i < GenerateViceraOnDeathAmount; i++) {
+            for (int i = 0; i < GenerateViceraOnDeathAmount; i++)
+            {
                 randomInt = Random.Range(0, Viscera.Length);
                 GameObject v = Instantiate(Viscera[randomInt]);
-                v.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f));
-                Destroy(v, 10.0f);
+                v.transform.position = this.transform.position;
+                v.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-20.0f, 20.0f), Random.Range(-20.0f, 20.0f));
+                Destroy(v, ViceraLifespan);
             }
         }
 
         body.simulated = false;
         playerSpriteObject.SetActive(false);
         Invoke("Dead", 2.5f);
+        isDead = true;
     }
 
     private void Dead() {
@@ -204,8 +213,10 @@ public class PlayerInput : MonoBehaviour {
         playerSpriteObject.SetActive(true);
         body.simulated = true;
         Vector2Int point = roundToGrid(this.transform.position);
-
+        
         this.transform.position = new Vector2(start_point.x + 0.5f, start_point.y + 0.5f);
+
+        isDead = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
