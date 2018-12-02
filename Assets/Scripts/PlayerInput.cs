@@ -16,7 +16,6 @@ public class PlayerInput : MonoBehaviour {
     private Rigidbody2D body;
     private Vector2Int start_point;
     public Tilemap terrain;
-    public Tilemap traps;
     public TileBase tombTile;
 
     private bool jumping = false;
@@ -118,9 +117,24 @@ public class PlayerInput : MonoBehaviour {
 
     void Die()
     {
+        // Can't die on the starting line
         Vector2Int point = roundToGrid(this.transform.position);
         if ((point - start_point).magnitude < 3) return;
 
+        // Subtract one life
+        // TODO
+
+        // Start death animations
+
+        // Check if we have finished the map
+        foreach(GameObject fin in GameObject.FindGameObjectsWithTag("Finish")) {
+            BoxCollider2D box = fin.GetComponent<BoxCollider2D>();
+            if(box != null && box.bounds.Contains(this.transform.position)) {
+                fin.GetComponent<LevelExit>().Exit();
+            }
+        }
+
+        // Just die
         terrain.SetTile(new Vector3Int(point.x, point.y, 0), tombTile);
         this.transform.position = new Vector2(start_point.x + 0.5f, start_point.y + 0.5f);
     }
@@ -131,11 +145,4 @@ public class PlayerInput : MonoBehaviour {
         if (trap_script != null) Die();
     }
 
-    //private void OnTriggerEnter2D(Collider2D collider)
-    //{
-    //    TrapCollider trap_script = collider.gameObject.GetComponent<TrapCollider>();
-    //    Tilemap tile = collider.gameObject.GetComponent<Tilemap>();
-    //    Debug.LogFormat("Found Trap {0} {1} {2}", tile == null, tile == traps, trap_script != null);
-    ////    if (tile == traps) Die();
-    //}
 }
