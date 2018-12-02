@@ -153,7 +153,7 @@ public class PlayerInput : MonoBehaviour {
 
     void Die()
     {
-        Vector2Int point = roundToGrid(this.transform.position);.velocity = Vector2.zero;
+        body.velocity = Vector2.zero;
         
         // Can't die on the starting line
         Vector2Int point = roundToGrid(this.transform.position);
