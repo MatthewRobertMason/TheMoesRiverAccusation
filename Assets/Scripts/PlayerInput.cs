@@ -19,7 +19,15 @@ public class PlayerInput : MonoBehaviour {
     public Tilemap traps;
     public TileBase tombTile;
 
+    public GameObject spriteObject = null;
+
+    [Range(0, 20)]
+    public int GenerateViceraOnDeathAmount = 5;
+    public GameObject[] Viscera;
+
     private bool jumping = false;
+    private bool isRunning = false;
+    private bool isColliding = false;
 
     private Animator animator = null;
     private SpriteRenderer spriteRenderer = null;
@@ -38,9 +46,8 @@ public class PlayerInput : MonoBehaviour {
         body = this.GetComponent<Rigidbody2D>();
         start_point = roundToGrid(this.transform.position);
 
-        animator = this.GetComponent<Animator>();
-        spriteRenderer = this.GetComponent<SpriteRenderer>();
-
+        animator = this.GetComponentInChildren<Animator>();
+        spriteRenderer = this.GetComponentInChildren<SpriteRenderer>();
     }
 	
     Vector2 JumpDirection()
@@ -58,32 +65,57 @@ public class PlayerInput : MonoBehaviour {
         return best.normal;
     }
 
-	// Update is called once per frame
-	void FixedUpdate () {
+    private void Update()
+    {
+        if (spriteObject.activeSelf)
+        {
+            if (jumping)
+            {
+                if (currentAnimation != Animations.STAND)
+                {
+                    currentAnimation = Animations.STAND;
+                    animator.Play("CharacterStand");
+                }
+            }
+            else if (isRunning)
+            {
+                if (!jumping)
+                {
+                    if (currentAnimation != Animations.RUN)
+                    {
+                        currentAnimation = Animations.RUN;
+                        animator.Play("CharacterRun");
+                    }
+                }
+            }
+            else
+            {
+                if (currentAnimation != Animations.IDLE)
+                {
+                    currentAnimation = Animations.IDLE;
+                    animator.Play("CharacterIdle");
+                }
+            }
+        }
+    }
+
+    // Update is called once per frame
+    void FixedUpdate () {
         float move = Input.GetAxis("Horizontal");
 
         if (Input.GetAxis("Horizontal") > 0)
         {
             spriteRenderer.flipX = false;
-            
-            if (currentAnimation != Animations.RUN)
-            {
-                animator.Play((int)Animations.RUN);
-            }
+            isRunning = true;
         }
         else if (Input.GetAxis("Horizontal") < 0)
         {
             spriteRenderer.flipX = true;
-            if (currentAnimation != Animations.RUN)
-            {
-                animator.Play((int)Animations.RUN);
-                currentAnimation = Animations.RUN;
-            }
+            isRunning = true;
         }
         else
         {
-            animator.Play((int)Animations.STAND);
-            currentAnimation = Animations.STAND;
+            isRunning = false;
         }
 
         float target_speed = 10 * move;
@@ -104,11 +136,15 @@ public class PlayerInput : MonoBehaviour {
                 body.velocity = body.velocity + direction;
             }
 
-            if (currentAnimation != Animations.JUMP)
+            if (!jumping)
             {
-                animator.Play((int)Animations.JUMP);
-                currentAnimation = Animations.JUMP;
+                jumping = true;
             }
+        }
+
+        if (isColliding)
+        {
+            jumping = false;
         }
 
         if (Input.GetButton("Die")) {
@@ -118,17 +154,50 @@ public class PlayerInput : MonoBehaviour {
 
     void Die()
     {
+        this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
         Vector2Int point = roundToGrid(this.transform.position);
         if ((point - start_point).magnitude < 3) return;
 
         terrain.SetTile(new Vector3Int(point.x, point.y, 0), tombTile);
+        
+        if ((Viscera != null) && (Viscera.Length > 0))
+        {
+            int randomInt = 0;
+            for (int i = 0; i < GenerateViceraOnDeathAmount; i++)
+            {
+                randomInt = Random.Range(0, Viscera.Length);
+                GameObject v = Instantiate(Viscera[randomInt]);
+                v.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f));
+                Destroy(v, 10.0f);
+            }
+        }
+
+        this.GetComponent<Rigidbody2D>().simulated = false;
+        spriteObject.SetActive(false);
+        Invoke("ReturnPlayerToStart", 5.0f);
+    }
+
+    void ReturnPlayerToStart()
+    {
+        spriteObject.SetActive(true);
+        this.GetComponent<Rigidbody2D>().simulated = true;
+        Vector2Int point = roundToGrid(this.transform.position);
+
         this.transform.position = new Vector2(start_point.x + 0.5f, start_point.y + 0.5f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        isColliding = true;
+
         TrapCollider trap_script = collision.gameObject.GetComponent<TrapCollider>();
         if (trap_script != null) Die();
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        isColliding = false;
     }
 
     //private void OnTriggerEnter2D(Collider2D collider)
