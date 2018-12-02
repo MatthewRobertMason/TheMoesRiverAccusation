@@ -117,7 +117,6 @@ public class PlayerInput : MonoBehaviour {
             for(int dx = -5; dx <= 5; dx++) {
                 for(int dy = -5; dy <= 5; dy++) {
                     TileBase tile = terrain.GetTile(new Vector3Int(player.x + dx, player.y + dy, 0));
-                    Debug.LogFormat("{0} {1}", player.x + dx, player.y + dy);
                     if(tile == tombTile) {
                         if (System.Math.Abs(dx) + System.Math.Abs(dy) < distance) {
                             match.x = player.x + dx;
