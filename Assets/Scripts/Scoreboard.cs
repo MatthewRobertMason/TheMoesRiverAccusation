@@ -22,6 +22,13 @@ public class Scoreboard : MonoBehaviour {
         Debug.LogFormat("Life lost, {0} remaining.", GetScoreboard().Lives);
     }
 
+    static public void SaveMook()
+    {
+        GetScoreboard().Lives++;
+        GetScoreboard().DudeSaves++;
+    }
+
+
     private void Awake()
     {
         if(self == null) {
@@ -33,7 +40,9 @@ public class Scoreboard : MonoBehaviour {
     }
 
     public int Lives = 10;
-    
+    public int LevelsFinished = 0;
+    public int DudeSaves = 0;
+
     // Use this for initialization
     void Start () {
 		
