@@ -28,6 +28,10 @@ public class Scoreboard : MonoBehaviour {
         GetScoreboard().DudeSaves++;
     }
 
+    static public void FinishLevel()
+    {
+        GetScoreboard().LevelsFinished++;
+    }
 
     private void Awake()
     {
@@ -50,6 +54,10 @@ public class Scoreboard : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        GameObject textObj = GameObject.Find("LivesText");
+        if(textObj != null) {
+            UnityEngine.UI.Text text = textObj.GetComponent<UnityEngine.UI.Text>();
+            text.text = Lives.ToString();
+        }
 	}
 }
