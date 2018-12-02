@@ -5,12 +5,26 @@ using UnityEngine.Tilemaps;
 
 public class PlayerInput : MonoBehaviour {
 
+    private enum Animations
+    {
+        STAND = 0,
+        IDLE = 1,
+        RUN = 2,
+        JUMP = 3
+    };
+
     private Rigidbody2D body;
     private Vector2Int start_point;
     public Tilemap terrain;
     public Tilemap traps;
     public TileBase tombTile;
 
+    private bool jumping = false;
+
+    private Animator animator = null;
+    private SpriteRenderer spriteRenderer = null;
+    private Animations currentAnimation = Animations.STAND;
+    
     Vector2Int roundToGrid(Vector2 point)
     {
         return new Vector2Int(
@@ -23,7 +37,11 @@ public class PlayerInput : MonoBehaviour {
 	void Start () {
         body = this.GetComponent<Rigidbody2D>();
         start_point = roundToGrid(this.transform.position);
-	}
+
+        animator = this.GetComponent<Animator>();
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
+
+    }
 	
     Vector2 JumpDirection()
     {
@@ -44,6 +62,30 @@ public class PlayerInput : MonoBehaviour {
 	void FixedUpdate () {
         float move = Input.GetAxis("Horizontal");
 
+        if (Input.GetAxis("Horizontal") > 0)
+        {
+            spriteRenderer.flipX = false;
+            
+            if (currentAnimation != Animations.RUN)
+            {
+                animator.Play((int)Animations.RUN);
+            }
+        }
+        else if (Input.GetAxis("Horizontal") < 0)
+        {
+            spriteRenderer.flipX = true;
+            if (currentAnimation != Animations.RUN)
+            {
+                animator.Play((int)Animations.RUN);
+                currentAnimation = Animations.RUN;
+            }
+        }
+        else
+        {
+            animator.Play((int)Animations.STAND);
+            currentAnimation = Animations.STAND;
+        }
+
         float target_speed = 10 * move;
         float max_change = 50 * Time.fixedDeltaTime;
 
@@ -60,6 +102,12 @@ public class PlayerInput : MonoBehaviour {
                 direction.x *= 6f;
                 direction.y *= 6f;
                 body.velocity = body.velocity + direction;
+            }
+
+            if (currentAnimation != Animations.JUMP)
+            {
+                animator.Play((int)Animations.JUMP);
+                currentAnimation = Animations.JUMP;
             }
         }
 
