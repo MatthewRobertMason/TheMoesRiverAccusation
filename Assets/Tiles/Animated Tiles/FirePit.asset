@@ -11,9 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
   m_Name: FirePit
   m_EditorClassIdentifier: 
-  m_DefaultGameObject: {fileID: 0}
-  m_AnimatedSprites: []
-  m_MinSpeed: 1
-  m_MaxSpeed: 1
+  m_DefaultGameObject: {fileID: 1839600762790762, guid: f9b0a5276b19bc943b128d9f704e5fa6,
+    type: 2}
+  m_AnimatedSprites:
+  - {fileID: 21300160, guid: 5fcc9d92e149c354ca40db10655a56d1, type: 3}
+  - {fileID: 21300162, guid: 5fcc9d92e149c354ca40db10655a56d1, type: 3}
+  - {fileID: 21300164, guid: 5fcc9d92e149c354ca40db10655a56d1, type: 3}
+  - {fileID: 21300166, guid: 5fcc9d92e149c354ca40db10655a56d1, type: 3}
+  m_MinSpeed: 4
+  m_MaxSpeed: 4
   m_AnimationStartTime: 0
   m_TileColliderType: 0

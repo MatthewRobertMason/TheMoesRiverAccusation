@@ -197,7 +197,7 @@ public class PlayerInput : MonoBehaviour {
     private void Dead() {
         // Check for game over
         if (Scoreboard.GetLives() == 0) {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("End");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Purgatory");
             return;
         }
 
@@ -231,7 +231,11 @@ public class PlayerInput : MonoBehaviour {
         isColliding = true;
 
         TrapCollider trap_script = collision.gameObject.GetComponent<TrapCollider>();
-        if (trap_script != null) Die();
+        if (trap_script != null)
+        {
+            Debug.Log("Death by Trap");
+            Die();
+        }
     }
     
     private void OnCollisionExit2D(Collision2D collision)

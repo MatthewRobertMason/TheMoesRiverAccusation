@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/End.unity
     guid: 47abde00957a732429865aef76b7561b
+  - enabled: 1
+    path: Assets/Scenes/Purgatory.unity
+    guid: 36c6245819ca68344800751fe339b8ff
   m_configObjects: {}
