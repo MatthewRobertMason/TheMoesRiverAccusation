@@ -154,32 +154,18 @@ public class PlayerInput : MonoBehaviour {
     void Die()
     {
         body.velocity = Vector2.zero;
-        
+
         // Can't die on the starting line
         Vector2Int point = roundToGrid(this.transform.position);
         if ((point - start_point).magnitude < 3) return;
 
         // Subtract one life
-        // TODO
+        Scoreboard.LostLife();
 
         // Start death animations
-
-        // Check if we have finished the map
-        foreach(GameObject fin in GameObject.FindGameObjectsWithTag("Finish")) {
-            BoxCollider2D box = fin.GetComponent<BoxCollider2D>();
-            if(box != null && box.bounds.Contains(this.transform.position)) {
-                fin.GetComponent<LevelExit>().Exit();
-            }
-        }
-
-        // Just die
-        terrain.SetTile(new Vector3Int(point.x, point.y, 0), tombTile);
-        
-        if ((Viscera != null) && (Viscera.Length > 0))
-        {
+        if ((Viscera != null) && (Viscera.Length > 0)) {
             int randomInt = 0;
-            for (int i = 0; i < GenerateViceraOnDeathAmount; i++)
-            {
+            for (int i = 0; i < GenerateViceraOnDeathAmount; i++) {
                 randomInt = Random.Range(0, Viscera.Length);
                 GameObject v = Instantiate(Viscera[randomInt]);
                 v.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-10.0f, 10.0f), Random.Range(-10.0f, 10.0f));
@@ -189,11 +175,32 @@ public class PlayerInput : MonoBehaviour {
 
         body.simulated = false;
         playerSpriteObject.SetActive(false);
-        Invoke("ReturnPlayerToStart", 5.0f);
+        Invoke("Dead", 2.5f);
     }
 
-    void ReturnPlayerToStart()
-    {
+    private void Dead() {
+        // Check for game over
+        if (Scoreboard.GetLives() == 0) {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("End");
+            return;
+        }
+
+        // Check if we have finished the map
+        foreach (GameObject fin in GameObject.FindGameObjectsWithTag("Finish")) {
+            BoxCollider2D box = fin.GetComponent<BoxCollider2D>();
+            if (box != null && box.bounds.Contains(this.transform.position)) {
+                fin.GetComponent<LevelExit>().Exit();
+                return;
+            }
+        }
+
+        // Just die
+        Vector2Int point = roundToGrid(this.transform.position);
+        terrain.SetTile(new Vector3Int(point.x, point.y, 0), tombTile);
+        Invoke("ReturnPlayerToStart", 1.5f);
+    }
+
+    void ReturnPlayerToStart() { 
         playerSpriteObject.SetActive(true);
         body.simulated = true;
         Vector2Int point = roundToGrid(this.transform.position);
