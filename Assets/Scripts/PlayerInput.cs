@@ -66,7 +66,7 @@ public class PlayerInput : MonoBehaviour {
 
     private void Update()
     {
-        if (spriteObject.activeSelf)
+        if (playerSpriteObject.activeSelf)
         {
             if (jumping)
             {
@@ -153,7 +153,7 @@ public class PlayerInput : MonoBehaviour {
 
     void Die()
     {
-        this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        Vector2Int point = roundToGrid(this.transform.position);.velocity = Vector2.zero;
         
         // Can't die on the starting line
         Vector2Int point = roundToGrid(this.transform.position);
@@ -187,15 +187,15 @@ public class PlayerInput : MonoBehaviour {
             }
         }
 
-        this.GetComponent<Rigidbody2D>().simulated = false;
-        spriteObject.SetActive(false);
+        body.simulated = false;
+        playerSpriteObject.SetActive(false);
         Invoke("ReturnPlayerToStart", 5.0f);
     }
 
     void ReturnPlayerToStart()
     {
-        spriteObject.SetActive(true);
-        this.GetComponent<Rigidbody2D>().simulated = true;
+        playerSpriteObject.SetActive(true);
+        body.simulated = true;
         Vector2Int point = roundToGrid(this.transform.position);
 
         this.transform.position = new Vector2(start_point.x + 0.5f, start_point.y + 0.5f);
