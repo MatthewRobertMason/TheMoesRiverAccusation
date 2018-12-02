@@ -25,7 +25,7 @@ public class AudioManager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        audioSource = this.GetComponent<AudioSource>();
+        audioSource = self.GetComponent<AudioSource>();
 
         audioSource.clip = purgatoryMusic;
         audioSource.loop = true;
