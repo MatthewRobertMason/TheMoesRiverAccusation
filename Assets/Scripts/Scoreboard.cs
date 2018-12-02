@@ -47,6 +47,15 @@ public class Scoreboard : MonoBehaviour {
         }
     }
 
+    static public void Reset()
+    {
+        GetScoreboard().Lives = 10;
+        GetScoreboard().Deaths = 0;
+        GetScoreboard().LevelsFinished = 0;
+        GetScoreboard().DudeSaves = 0;
+    }
+
+
     public int Lives = 10;
     public int Deaths = 0;
     public int LevelsFinished = 0;
