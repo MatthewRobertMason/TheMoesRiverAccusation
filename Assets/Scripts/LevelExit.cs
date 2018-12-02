@@ -9,6 +9,7 @@ public class LevelExit : MonoBehaviour {
     public void Exit()
     {
         Debug.LogFormat("Level finished, going to: {0}", NextLevel);
+        Scoreboard.FinishLevel();
         UnityEngine.SceneManagement.SceneManager.LoadScene(NextLevel);
     }
 }

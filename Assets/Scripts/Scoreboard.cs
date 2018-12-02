@@ -22,6 +22,17 @@ public class Scoreboard : MonoBehaviour {
         Debug.LogFormat("Life lost, {0} remaining.", GetScoreboard().Lives);
     }
 
+    static public void SaveMook()
+    {
+        GetScoreboard().Lives++;
+        GetScoreboard().DudeSaves++;
+    }
+
+    static public void FinishLevel()
+    {
+        GetScoreboard().LevelsFinished++;
+    }
+
     private void Awake()
     {
         if(self == null) {
@@ -33,7 +44,9 @@ public class Scoreboard : MonoBehaviour {
     }
 
     public int Lives = 10;
-    
+    public int LevelsFinished = 0;
+    public int DudeSaves = 0;
+
     // Use this for initialization
     void Start () {
 		
@@ -41,6 +54,10 @@ public class Scoreboard : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        GameObject textObj = GameObject.Find("LivesText");
+        if(textObj != null) {
+            UnityEngine.UI.Text text = textObj.GetComponent<UnityEngine.UI.Text>();
+            text.text = Lives.ToString();
+        }
 	}
 }

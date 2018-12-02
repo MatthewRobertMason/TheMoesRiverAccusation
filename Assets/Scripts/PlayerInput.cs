@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+
 public class PlayerInput : MonoBehaviour {
 
     private enum Animations
@@ -103,6 +104,32 @@ public class PlayerInput : MonoBehaviour {
                     currentAnimation = Animations.IDLE;
                     animator.Play("CharacterIdle");
                 }
+            }
+        }
+
+        if (Input.GetButtonDown("Break")) {
+            Debug.Log("Trying to break a grave");
+            int distance = 999999;
+            Vector3Int match = new Vector3Int(0, 0, 0);
+            Vector3Int player = terrain.WorldToCell(this.transform.position);
+            Debug.Log(this.transform.position);
+
+            for(int dx = -5; dx <= 5; dx++) {
+                for(int dy = -5; dy <= 5; dy++) {
+                    TileBase tile = terrain.GetTile(new Vector3Int(player.x + dx, player.y + dy, 0));
+                    if(tile == tombTile) {
+                        if (System.Math.Abs(dx) + System.Math.Abs(dy) < distance) {
+                            match.x = player.x + dx;
+                            match.y = player.y + dy;
+                            distance = System.Math.Abs(dx) + System.Math.Abs(dy);
+                        }
+                    }
+                }
+            }
+
+            if(distance != 999999) {
+                Debug.LogFormat("Broke grave at {0} {0}", match.x, match.y);
+                terrain.SetTile(match, null);
             }
         }
     }
@@ -219,7 +246,6 @@ public class PlayerInput : MonoBehaviour {
     void ReturnPlayerToStart() { 
         playerSpriteObject.SetActive(true);
         body.simulated = true;
-        Vector2Int point = roundToGrid(this.transform.position);
         
         this.transform.position = new Vector2(start_point.x + 0.5f, start_point.y + 0.5f);
 
@@ -228,6 +254,7 @@ public class PlayerInput : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         isColliding = true;
 
         TrapCollider trap_script = collision.gameObject.GetComponent<TrapCollider>();

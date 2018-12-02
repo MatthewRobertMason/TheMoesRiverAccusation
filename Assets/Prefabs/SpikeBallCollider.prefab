@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1299106452520070}
+  m_RootGameObject: {fileID: 1301371115277902}
   m_IsPrefabAsset: 1
---- !u!1 &1299106452520070
+--- !u!1 &1301371115277902
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4550169990541200}
-  - component: {fileID: 114994391680086592}
-  - component: {fileID: 61545594146823818}
-  - component: {fileID: 50682491396730698}
+  - component: {fileID: 4888684511455366}
+  - component: {fileID: 114187155681351726}
+  - component: {fileID: 58095209828852810}
+  - component: {fileID: 50371232901533520}
   m_Layer: 0
-  m_Name: LavaCollider
-  m_TagString: Trap
+  m_Name: SpikeBallCollider
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4550169990541200
+--- !u!4 &4888684511455366
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1299106452520070}
+  m_GameObject: {fileID: 1301371115277902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.141968, y: 17.70341, z: 0}
+  m_LocalPosition: {x: 17.438147, y: 10.350046, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50682491396730698
+--- !u!50 &50371232901533520
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1299106452520070}
+  m_GameObject: {fileID: 1301371115277902}
   m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -62,37 +62,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61545594146823818
-BoxCollider2D:
+--- !u!58 &58095209828852810
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1299106452520070}
+  m_GameObject: {fileID: 1301371115277902}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5, y: 0.4}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.8}
-  m_EdgeRadius: 0
---- !u!114 &114994391680086592
+  m_Radius: 0.5
+--- !u!114 &114187155681351726
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1299106452520070}
+  m_GameObject: {fileID: 1301371115277902}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30b902099b49d324686d496760158fdd, type: 3}
