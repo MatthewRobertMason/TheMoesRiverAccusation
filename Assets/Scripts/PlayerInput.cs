@@ -219,7 +219,6 @@ public class PlayerInput : MonoBehaviour {
     void ReturnPlayerToStart() { 
         playerSpriteObject.SetActive(true);
         body.simulated = true;
-        Vector2Int point = roundToGrid(this.transform.position);
         
         this.transform.position = new Vector2(start_point.x + 0.5f, start_point.y + 0.5f);
 
@@ -228,6 +227,7 @@ public class PlayerInput : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
         isColliding = true;
 
         TrapCollider trap_script = collision.gameObject.GetComponent<TrapCollider>();
