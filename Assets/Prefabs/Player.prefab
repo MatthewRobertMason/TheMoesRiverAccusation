@@ -41,6 +41,8 @@ GameObject:
   - component: {fileID: 114451819401660968}
   - component: {fileID: 212625806551571142}
   - component: {fileID: 114077277156868062}
+  - component: {fileID: 111530529566417368}
+  - component: {fileID: 95157675591995866}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -68,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1720366547091050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.282194, y: 140.5515, z: -0.296875}
+  m_LocalPosition: {x: -7.5, y: 4.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4637510450227968}
@@ -147,7 +149,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.25}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
 --- !u!81 &81500964919362976
@@ -157,6 +159,42 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1202698711405300}
   m_Enabled: 1
+--- !u!95 &95157675591995866
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1720366547091050}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0ac269cf91db9374e851b4131de2b810, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!111 &111530529566417368
+Animation:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1720366547091050}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 5f46d66e3cb4b754088101a703ced013, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 8286e00dcd203354a8911cc174b51bf8, type: 2}
+  - {fileID: 7400000, guid: 5f46d66e3cb4b754088101a703ced013, type: 2}
+  - {fileID: 7400000, guid: 66009859c92f45a4da30688d4fc0b685, type: 2}
+  - {fileID: 7400000, guid: eb6b6b3c076b6dc42bbebd4f3ce5e54a, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114077277156868062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,7 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86e3ef8e3a60014a8b073c8724384ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 0}
+  terrain: {fileID: 0}
+  traps: {fileID: 0}
   tombTile: {fileID: 11400000, guid: 06bd6d6731b385c47b9332e792928523, type: 2}
 --- !u!212 &212625806551571142
 SpriteRenderer:
@@ -295,12 +334,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300016, guid: 5fcc9d92e149c354ca40db10655a56d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 243ce6a79f9b36d4aa147580bbd5244f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
