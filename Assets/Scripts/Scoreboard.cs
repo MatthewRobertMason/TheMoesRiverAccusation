@@ -18,7 +18,11 @@ public class Scoreboard : MonoBehaviour {
 
     static public void LostLife()
     {
-        if (GetScoreboard().Lives > 0) GetScoreboard().Lives--;
+        if (GetScoreboard().Lives > 0) {
+            GetScoreboard().Deaths++;
+            GetScoreboard().Lives--;
+        }
+
         Debug.LogFormat("Life lost, {0} remaining.", GetScoreboard().Lives);
     }
 
@@ -44,6 +48,7 @@ public class Scoreboard : MonoBehaviour {
     }
 
     public int Lives = 10;
+    public int Deaths = 0;
     public int LevelsFinished = 0;
     public int DudeSaves = 0;
 
