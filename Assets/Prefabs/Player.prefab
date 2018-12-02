@@ -244,9 +244,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   terrain: {fileID: 0}
   tombTile: {fileID: 11400000, guid: 0db26fdf48b12b7478a822ffa36e0d24, type: 2}
-  spriteObject: {fileID: 1999309900865286}
+  playerSpriteObject: {fileID: 1999309900865286}
   GenerateViceraOnDeathAmount: 5
-  Viscera: []
+  Viscera:
+  - {fileID: 1008295329671256, guid: da4b502098e26b944a6d6ba0befd3dea, type: 2}
+  - {fileID: 1920408765755526, guid: da4b502098e26b944a6d6ba0befd3dea, type: 2}
+  - {fileID: 1527557240424732, guid: da4b502098e26b944a6d6ba0befd3dea, type: 2}
+  - {fileID: 1227773982966416, guid: da4b502098e26b944a6d6ba0befd3dea, type: 2}
+  - {fileID: 1745130567497698, guid: da4b502098e26b944a6d6ba0befd3dea, type: 2}
+  - {fileID: 1983913261924078, guid: da4b502098e26b944a6d6ba0befd3dea, type: 2}
+  - {fileID: 1247451673678774, guid: da4b502098e26b944a6d6ba0befd3dea, type: 2}
+  - {fileID: 1474067463052540, guid: da4b502098e26b944a6d6ba0befd3dea, type: 2}
 --- !u!114 &114613558118180840
 MonoBehaviour:
   m_ObjectHideFlags: 1
