@@ -31,11 +31,13 @@ public class PlayerInput : MonoBehaviour {
     private bool isRunning = false;
     private bool isColliding = false;
     private bool isDead = false;
+    private int jump_cooldown = 0;
 
     private Animator animator = null;
     private SpriteRenderer spriteRenderer = null;
     private Animations currentAnimation = Animations.STAND;
-    
+
+
     Vector2Int roundToGrid(Vector2 point)
     {
         return new Vector2Int(
@@ -52,7 +54,7 @@ public class PlayerInput : MonoBehaviour {
         animator = this.GetComponentInChildren<Animator>();
         spriteRenderer = this.GetComponentInChildren<SpriteRenderer>();
     }
-	
+
     Vector2 JumpDirection()
     {
         ContactPoint2D[] contacts = new ContactPoint2D[100];
@@ -65,6 +67,9 @@ public class PlayerInput : MonoBehaviour {
                 best = contacts[ii];
             }
         }
+
+        if (Vector2.Dot(best.normal, Vector2.down) > 0.7) return new Vector2(0, 0);
+
         return best.normal;
     }
 
@@ -104,6 +109,7 @@ public class PlayerInput : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate () {
+        if (jump_cooldown > 0) jump_cooldown--;
         float move = Input.GetAxis("Horizontal");
 
         if (Input.GetAxis("Horizontal") > 0)
@@ -129,13 +135,14 @@ public class PlayerInput : MonoBehaviour {
             body.velocity.y
         );
 
-        if (Input.GetButton("Jump")) {
+        if (Input.GetButton("Jump") && jump_cooldown == 0) {
             Vector2 direction = JumpDirection();
             if (direction.magnitude > 0.01) {
+                jump_cooldown = 3;
                 direction.y += 0.6f;
                 direction.Normalize();
-                direction.x *= 6f;
-                direction.y *= 6f;
+                direction.x *= 10f;
+                direction.y *= 10f;
                 body.velocity = body.velocity + direction;
             }
 
