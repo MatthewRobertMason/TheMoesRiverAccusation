@@ -18,7 +18,7 @@ public class PlayerInput : MonoBehaviour {
     public Tilemap terrain;
     public TileBase tombTile;
 
-    public GameObject spriteObject = null;
+    public GameObject playerSpriteObject = null;
 
     [Range(0, 20)]
     public int GenerateViceraOnDeathAmount = 5;
