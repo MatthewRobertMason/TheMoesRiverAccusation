@@ -252,7 +252,26 @@ public class PlayerInput : MonoBehaviour {
     private void Dead() {
         PlaySound(TombSound);
         // Check for game over
-        if (Scoreboard.GetLives() == 0) {
+        if (Scoreboard.GetLives() == 0)
+        {
+            foreach (GameObject fin in GameObject.FindGameObjectsWithTag("Finish"))
+            {
+                BoxCollider2D box = fin.GetComponent<BoxCollider2D>();
+                if (box != null && box.bounds.Contains(this.transform.position))
+                {
+                    LevelExit exit = fin.GetComponent<LevelExit>();
+                    if (exit.Reset)
+                    {
+                        // Don't send us to purgatory
+                        exit.Exit();
+                        return;
+                    }
+
+                    // If we die on an Altar at the end
+                    Scoreboard.FinishLevel();
+                    break;
+                }
+            }
             UnityEngine.SceneManagement.SceneManager.LoadScene("Purgatory");
             return;
         }

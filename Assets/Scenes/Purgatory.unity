@@ -25886,7 +25886,7 @@ Prefab:
     - target: {fileID: 114770708282336744, guid: 8998051731bc806499baaba757f4afac,
         type: 2}
       propertyPath: NextLevel
-      value: FirstMap
+      value: Map001
       objectReference: {fileID: 0}
     - target: {fileID: 114770708282336744, guid: 8998051731bc806499baaba757f4afac,
         type: 2}
@@ -47543,7 +47543,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4801973908741964, guid: 315b7d6f52ba60e44a946adf7714e194, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -7.01
+      value: -6.59
       objectReference: {fileID: 0}
     - target: {fileID: 4801973908741964, guid: 315b7d6f52ba60e44a946adf7714e194, type: 2}
       propertyPath: m_LocalPosition.z
