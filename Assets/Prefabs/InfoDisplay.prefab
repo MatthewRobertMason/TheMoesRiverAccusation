@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222438124770123446}
   - component: {fileID: 114200397897630806}
   m_Layer: 5
-  m_Name: Image
+  m_Name: LivesImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

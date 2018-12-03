@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpriteController : MonoBehaviour
 {
@@ -23,11 +24,30 @@ public class SpriteController : MonoBehaviour
 
         spriteIndex = Random.Range(0, sheets.Count);
         spriteSheetName = sheets[spriteIndex];
+
+        var subSprites = Resources.LoadAll<Sprite>("Sprites/" + spriteSheetName);
+
+        foreach (var renderer in GetComponentsInChildren<SpriteRenderer>())
+        {
+            Rect spriteRect = ((Sprite)renderer.sprite).rect;
+            var newSprite = System.Array.Find(subSprites, item => item.rect == spriteRect);
+
+            if (newSprite)
+            {
+                renderer.sprite = newSprite;
+
+                if (newSprite.rect == new Rect(0.0f, 72.0f, 16.0f, 24.0f))
+                {
+                    Image lives = GameObject.Find("LivesImage").GetComponent<Image>();
+                    lives.sprite = newSprite;
+                }
+            }
+        }
     }
 	
 	// Update is called once per frame
 	void LateUpdate ()
-    {        
+    {     
         var subSprites = Resources.LoadAll<Sprite>("Sprites/" + spriteSheetName);
         
         foreach (var renderer in GetComponentsInChildren<SpriteRenderer>())
@@ -36,7 +56,15 @@ public class SpriteController : MonoBehaviour
             var newSprite = System.Array.Find(subSprites, item => item.rect == spriteRect);
 
             if (newSprite)
+            {
                 renderer.sprite = newSprite;
+
+                if (newSprite.rect == new Rect(0.0f, 72.0f, 16.0f, 24.0f))
+                {
+                    Image lives = GameObject.Find("LivesImage").GetComponent<Image>();
+                    lives.sprite = newSprite;
+                }
+            }
         }
     }
 }
