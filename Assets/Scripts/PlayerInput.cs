@@ -34,6 +34,7 @@ public class PlayerInput : MonoBehaviour {
     public AudioClip GenericDeath;
     public AudioClip AltarDeath;
     private AudioSource audioSource;
+    private AudioClip deathSound;
     
     private bool jumping = false;
     private bool isRunning = false;
@@ -63,6 +64,7 @@ public class PlayerInput : MonoBehaviour {
         spriteRenderer = this.GetComponentInChildren<SpriteRenderer>();
 
         audioSource = this.GetComponent<AudioSource>();
+        deathSound = null;
     }
 
     private void PlaySound(AudioClip clip)
@@ -235,6 +237,23 @@ public class PlayerInput : MonoBehaviour {
 
         body.simulated = false;
         playerSpriteObject.SetActive(false);
+        
+        foreach (GameObject fin in GameObject.FindGameObjectsWithTag("Finish"))
+        {
+            BoxCollider2D box = fin.GetComponent<BoxCollider2D>();
+            if (box != null && box.bounds.Contains(this.transform.position))
+            {
+                deathSound = AltarDeath;
+                break;
+            }
+        }
+
+        if (deathSound == null)
+            deathSound = GenericDeath;
+
+        PlaySound(deathSound);
+        deathSound = null;
+
         Invoke("Dead", 2.5f);
         isDead = true;
     }
@@ -251,7 +270,6 @@ public class PlayerInput : MonoBehaviour {
         foreach (GameObject fin in GameObject.FindGameObjectsWithTag("Finish")) {
             BoxCollider2D box = fin.GetComponent<BoxCollider2D>();
             if (box != null && box.bounds.Contains(this.transform.position)) {
-                PlaySound(AltarDeath);
                 fin.GetComponent<LevelExit>().Exit();
                 return;
             }
@@ -280,9 +298,10 @@ public class PlayerInput : MonoBehaviour {
         if (trap_script != null)
         {
             if (trap_script.DeathSound != null)
-                PlaySound(trap_script.DeathSound);
-            else 
-                PlaySound(GenericDeath);
+                deathSound = trap_script.DeathSound;
+            else
+                deathSound = GenericDeath;
+                
 
             Debug.Log("Death by Trap");
             Die();
