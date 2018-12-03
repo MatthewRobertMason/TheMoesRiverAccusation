@@ -15,7 +15,7 @@ public class PlayerInput : MonoBehaviour {
     };
 
     private Rigidbody2D body;
-    private Vector2Int start_point;
+    private Vector3Int start_point;
     public Tilemap terrain;
     public TileBase tombTile;
 
@@ -35,7 +35,7 @@ public class PlayerInput : MonoBehaviour {
     public AudioClip AltarDeath;
     private AudioSource audioSource;
     private AudioClip deathSound;
-    
+
     private bool jumping = false;
     private bool isRunning = false;
     private bool isColliding = false;
@@ -46,19 +46,10 @@ public class PlayerInput : MonoBehaviour {
     private SpriteRenderer spriteRenderer = null;
     private Animations currentAnimation = Animations.STAND;
 
-    
-    Vector2Int roundToGrid(Vector2 point)
-    {
-        return new Vector2Int(
-            Mathf.RoundToInt(point.x - 0.5f),
-            Mathf.RoundToInt(point.y - 0.5f)
-        );
-    }
-
 	// Use this for initialization
 	void Start () {
         body = this.GetComponent<Rigidbody2D>();
-        start_point = roundToGrid(this.transform.position);
+        start_point = terrain.WorldToCell(this.transform.position);
 
         animator = this.GetComponentInChildren<Animator>();
         spriteRenderer = this.GetComponentInChildren<SpriteRenderer>();
@@ -215,7 +206,7 @@ public class PlayerInput : MonoBehaviour {
         body.velocity = Vector2.zero;
 
         // Can't die on the starting line
-        Vector2Int point = roundToGrid(this.transform.position);
+        Vector3Int point = terrain.WorldToCell(this.transform.position);
         if ((point - start_point).magnitude < 3) return;
 
         // Subtract one life
@@ -276,16 +267,16 @@ public class PlayerInput : MonoBehaviour {
         }
 
         // Just die
-        Vector2Int point = roundToGrid(this.transform.position);
-        terrain.SetTile(new Vector3Int(point.x, point.y, 0), tombTile);
+        Vector3Int point = terrain.WorldToCell(this.transform.position);
+        terrain.SetTile(point, tombTile);
         Invoke("ReturnPlayerToStart", 1.5f);
     }
 
-    void ReturnPlayerToStart() { 
+    void ReturnPlayerToStart() {
         playerSpriteObject.SetActive(true);
         body.simulated = true;
-        
-        this.transform.position = new Vector2(start_point.x + 0.5f, start_point.y + 0.5f);
+
+        this.transform.position = terrain.CellToWorld(start_point);
 
         isDead = false;
     }
@@ -301,13 +292,12 @@ public class PlayerInput : MonoBehaviour {
                 deathSound = trap_script.DeathSound;
             else
                 deathSound = GenericDeath;
-                
 
             Debug.Log("Death by Trap");
             Die();
         }
     }
-    
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         isColliding = false;

@@ -25,8 +25,7 @@ namespace UnityEngine.Tilemaps
         {
             tileData.transform = Matrix4x4.identity;
             tileData.color = Color.white;
-            if (m_DefaultGameObject != null)
-                tileData.gameObject = Instantiate(m_DefaultGameObject, new Vector3(0, 0, 0), Quaternion.identity);
+            tileData.gameObject = m_DefaultGameObject;
 
             if (m_AnimatedSprites != null && m_AnimatedSprites.Length > 0)
             {
