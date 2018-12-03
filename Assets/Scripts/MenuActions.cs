@@ -7,6 +7,6 @@ public class MenuActions : MonoBehaviour {
 	public void StartGame()
     {
         Debug.Log("Starting Game...");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("FirstMap");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Map001");
     }
 }
