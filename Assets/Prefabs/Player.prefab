@@ -368,6 +368,7 @@ MonoBehaviour:
   TombSound: {fileID: 8300000, guid: 5e2ab9df6ab3a9a4cadb66f82794ee31, type: 3}
   GenericDeath: {fileID: 8300000, guid: fca8b2425161a354e8c91d1123d89d67, type: 3}
   AltarDeath: {fileID: 8300000, guid: 64c36c92006831d409acb1bdeaa211d3, type: 3}
+  Rescue: {fileID: 8300000, guid: 3dc4deeb82949444cbfb2af818afe7ad, type: 3}
 --- !u!212 &212307676368111768
 SpriteRenderer:
   m_ObjectHideFlags: 1
