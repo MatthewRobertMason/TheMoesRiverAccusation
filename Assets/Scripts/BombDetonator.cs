@@ -10,14 +10,26 @@ public class BombDetonator : MonoBehaviour {
     public float flopForce = 10;
     public float shootforce = 100;
     public GameObject starType;
-    
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    private AudioSource audioSource;
+
+    public AudioClip fuseSound;
+    public AudioClip explodeSound;
+
+    // Use this for initialization
+    void Start () {
+        audioSource = this.GetComponent<AudioSource>();
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        audioSource.Stop();
+        audioSource.clip = clip;
+        audioSource.loop = false;
+        audioSource.Play();
+    }
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
@@ -28,14 +40,22 @@ public class BombDetonator : MonoBehaviour {
                 exploding = true;
                 GetComponent<Animator>().enabled = true;
                 Invoke("Explode", 4);
+                PlaySound(fuseSound);
             }
         }
     }
 
-    private void Explode()
+    private void Remove()
     {
         Destroy(gameObject);
+    }
+
+    private void Explode()
+    {
+        PlaySound(explodeSound);
         GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
+        Invoke("Remove", 5);
 
 
         // Create nearby stars
