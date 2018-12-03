@@ -5,6 +5,7 @@ using UnityEngine;
 public class Scoreboard : MonoBehaviour {
 
     static private GameObject self = null;
+    static public bool gameBeaten = false;
 
     static public Scoreboard GetScoreboard()
     {

@@ -22,7 +22,7 @@ public class PlayerInput : MonoBehaviour {
     public GameObject playerSpriteObject = null;
 
     [Header("Viscera")]
-    [Range(0, 20)]
+    [Range(0, 30)]
     public int GenerateVisceraOnDeathAmount = 5;
     [Range(0.0f, 120.0f)]
     public float VisceraLifespan = 15.0f;
