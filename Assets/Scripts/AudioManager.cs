@@ -5,6 +5,11 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {    
     static private GameObject self;
+
+    public AudioClip purgatoryMusic;
+    public AudioClip cultMusic;
+    private AudioSource audioSource;
+
     private void Awake()
     {
         if (self == null)
@@ -16,19 +21,17 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    public AudioClip purgatoryMusic;
-    public AudioClip cultMusic;
-    private AudioSource audioSource;
-
-    // Use this for initialization
-    void Start ()
-    {
         audioSource = self.GetComponent<AudioSource>();
         audioSource.clip = purgatoryMusic;
         audioSource.loop = true;
         audioSource.Play();
+    }
+    
+    // Use this for initialization
+    void Start ()
+    {
+        
     }
 	
     public void SwitchMusicToPurgatoryMusic()

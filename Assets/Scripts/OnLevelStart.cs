@@ -5,18 +5,26 @@ using UnityEngine;
 public class OnLevelStart : MonoBehaviour
 {
     public bool isPurgatory = false;
-	
-	void Start ()
-    {        
-        AudioManager am = FindObjectOfType<AudioManager>();
 
-        if (isPurgatory)
+    void Start()
+    {
+        Scoreboard score = FindObjectOfType<Scoreboard>();
+        if (score != null)
         {
-            am.SwitchMusicToPurgatoryMusic();
+            score.Lives = 2;
         }
-        else
+
+        AudioManager am = FindObjectOfType<AudioManager>();
+        if (am != null)
         {
-            am.SwitchMusicToCultMusic();
+            if (isPurgatory)
+            {
+                am.SwitchMusicToPurgatoryMusic();
+            }
+            else
+            {
+                am.SwitchMusicToCultMusic();
+            }
         }
 	}
 }

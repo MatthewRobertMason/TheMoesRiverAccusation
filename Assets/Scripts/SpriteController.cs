@@ -57,8 +57,12 @@ public class SpriteController : MonoBehaviour
 
                 if (newSprite.rect == new Rect(0.0f, 72.0f, 16.0f, 24.0f))
                 {
-                    Image lives = GameObject.Find("LivesImage").GetComponent<Image>();
-                    lives.sprite = newSprite;
+                    if (GameObject.Find("LivesImage") != null)
+                    {
+                        Image lives = GameObject.Find("LivesImage").GetComponent<Image>();
+                        if (lives != null)
+                            lives.sprite = newSprite;
+                    }
                 }
             }
         }
