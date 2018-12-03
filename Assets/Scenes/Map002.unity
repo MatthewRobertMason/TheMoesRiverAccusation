@@ -7749,6 +7749,16 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 224644534008860202, guid: 969dbfcaca9a68a49903269d7a5405d6,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224644534008860202, guid: 969dbfcaca9a68a49903269d7a5405d6,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 969dbfcaca9a68a49903269d7a5405d6, type: 2}
   m_IsPrefabAsset: 0
@@ -16292,10 +16302,11 @@ Tilemap:
   - first: {x: 0, y: 10, z: 0}
     second:
       m_TileIndex: 1
-      m_TileSpriteIndex: 4294967295
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
+      m_ObjectToInstantiate: {fileID: 1301371115277902, guid: 491eff3f8f01c3d428194b225935e2cd,
+        type: 2}
       m_TileFlags: 2
       m_ColliderType: 1
   m_AnimatedTiles: {}
@@ -16307,8 +16318,8 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 6
     m_Data: {fileID: 21300020, guid: 5fcc9d92e149c354ca40db10655a56d1, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300178, guid: 5fcc9d92e149c354ca40db10655a56d1, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 7
     m_Data:
