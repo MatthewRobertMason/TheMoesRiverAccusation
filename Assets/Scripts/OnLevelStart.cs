@@ -8,10 +8,10 @@ public class OnLevelStart : MonoBehaviour
 
     void Start()
     {
-        Scoreboard score = FindObjectOfType<Scoreboard>();
-        if (score != null)
-        {
-            score.Lives = 2;
+        if (isPurgatory) {
+            foreach (Scoreboard score in FindObjectsOfType<Scoreboard>()) {
+                score.Lives = 2;
+            }
         }
 
         AudioManager am = FindObjectOfType<AudioManager>();
