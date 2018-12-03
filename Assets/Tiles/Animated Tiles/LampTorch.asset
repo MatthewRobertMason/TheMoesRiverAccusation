@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Name: LampTorch
   m_EditorClassIdentifier: 
   m_DefaultGameObject: {fileID: 0}
-  m_AnimatedSprites: []
-  m_MinSpeed: 1
-  m_MaxSpeed: 1
+  m_AnimatedSprites:
+  - {fileID: 21300282, guid: 5fcc9d92e149c354ca40db10655a56d1, type: 3}
+  - {fileID: 21300284, guid: 5fcc9d92e149c354ca40db10655a56d1, type: 3}
+  m_MinSpeed: 8
+  m_MaxSpeed: 8
   m_AnimationStartTime: 0
   m_TileColliderType: 0
