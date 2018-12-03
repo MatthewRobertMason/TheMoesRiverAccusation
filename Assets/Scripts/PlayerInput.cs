@@ -200,7 +200,7 @@ public class PlayerInput : MonoBehaviour {
         }
     }
 
-    void Die()
+    public void Die()
     {
         if (isDead) return;
         body.velocity = Vector2.zero;
