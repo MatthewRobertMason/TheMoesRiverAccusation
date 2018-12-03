@@ -14036,7 +14036,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4801973908741964, guid: 315b7d6f52ba60e44a946adf7714e194, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4.82
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4801973908741964, guid: 315b7d6f52ba60e44a946adf7714e194, type: 2}
       propertyPath: m_LocalPosition.z
@@ -14067,6 +14067,11 @@ Prefab:
       propertyPath: terrain
       value: 
       objectReference: {fileID: 232532663}
+    - target: {fileID: 114451819401660968, guid: 315b7d6f52ba60e44a946adf7714e194,
+        type: 2}
+      propertyPath: GenericDeath
+      value: 
+      objectReference: {fileID: 8300000, guid: fca8b2425161a354e8c91d1123d89d67, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 315b7d6f52ba60e44a946adf7714e194, type: 2}
   m_IsPrefabAsset: 0
