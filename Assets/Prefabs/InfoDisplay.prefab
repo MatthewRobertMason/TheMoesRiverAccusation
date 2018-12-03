@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 114093761513521608}
   - component: {fileID: 114710162482525066}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61706863fa697e94cb35cc64e0dc8507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: {fileID: 114105513351426448}
+  volumeBar: {fileID: 114105513351426448}
 --- !u!114 &114740838145241592
 MonoBehaviour:
   m_ObjectHideFlags: 1
