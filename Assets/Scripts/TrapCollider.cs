@@ -14,17 +14,25 @@ public class TrapCollider : MonoBehaviour
         "Lava"
     };
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
+        Invoke("CullExtra", 0.5f);
+    }
+    void CullExtra() { 
         Debug.Log("Created trap collider");
         bool found = false;
+        var actual_tiles = new List<string>();
         foreach(Tilemap map in GameObject.FindObjectsOfType<Tilemap>()) {
             var cell = map.WorldToCell(this.transform.position);
             var tile = map.GetTile(cell);
-            if(tile != null) found |= KnownTraps.Contains(tile.name);
+            if (tile != null) {
+                found |= KnownTraps.Contains(tile.name);
+                actual_tiles.Add(tile.name);
+            }
         }
         if (!found) {
-            Debug.Log("Extra trap collider removed");
+            Debug.LogFormat("Extra trap collider removed {0}", System.String.Join(", ", actual_tiles.ToArray()));
             Destroy(this.gameObject);
         }
 	}

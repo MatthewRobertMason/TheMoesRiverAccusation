@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class MookMind : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+    private AudioSource audioSource;
+    public AudioClip Rescue;
+
+    // Use this for initialization
+    void Start () {
+        audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -14,13 +17,28 @@ public class MookMind : MonoBehaviour {
 		
 	}
 
+    private void PlaySound(AudioClip clip)
+    {
+        audioSource.Stop();
+        audioSource.clip = clip;
+        audioSource.loop = false;
+        audioSource.Play();
+    }
+
+    void Remove()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var player = collision.gameObject.GetComponent<PlayerInput>();
         if (player != null) {
             Scoreboard.SaveMook();
-            player.PlaySound(player.Rescue);
-            Destroy(gameObject);
+            PlaySound(Rescue);
+            foreach(SpriteRenderer sr in GetComponentsInChildren<SpriteRenderer>()) sr.enabled = false;
+            foreach(Collider2D col in GetComponentsInChildren<Collider2D>()) col.enabled = false;
+            Invoke("Remove", 2);
         }
     }
 }
