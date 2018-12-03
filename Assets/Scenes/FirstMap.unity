@@ -16511,16 +16511,6 @@ Prefab:
       propertyPath: terrain
       value: 
       objectReference: {fileID: 232532663}
-    - target: {fileID: 114451819401660968, guid: 315b7d6f52ba60e44a946adf7714e194,
-        type: 2}
-      propertyPath: GenericDeath
-      value: 
-      objectReference: {fileID: 8300000, guid: fca8b2425161a354e8c91d1123d89d67, type: 3}
-    - target: {fileID: 61314645033795284, guid: 315b7d6f52ba60e44a946adf7714e194,
-        type: 2}
-      propertyPath: m_Offset.y
-      value: -0.25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 315b7d6f52ba60e44a946adf7714e194, type: 2}
   m_IsPrefabAsset: 0
