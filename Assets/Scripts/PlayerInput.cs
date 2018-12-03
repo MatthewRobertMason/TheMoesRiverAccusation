@@ -21,13 +21,20 @@ public class PlayerInput : MonoBehaviour {
 
     public GameObject playerSpriteObject = null;
 
+    [Header("Viscera")]
     [Range(0, 20)]
-    public int GenerateViceraOnDeathAmount = 5;
-
-    [Range(0.0f, 60.0f)]
-    public float ViceraLifespan = 15.0f;
+    public int GenerateVisceraOnDeathAmount = 5;
+    [Range(0.0f, 120.0f)]
+    public float VisceraLifespan = 15.0f;
     public GameObject[] Viscera;
 
+    [Header("Sounds")]
+    public AudioClip Jump;
+    public AudioClip TombSound;
+    public AudioClip GenericDeath;
+    public AudioClip AltarDeath;
+    private AudioSource audioSource;
+    
     private bool jumping = false;
     private bool isRunning = false;
     private bool isColliding = false;
@@ -38,7 +45,7 @@ public class PlayerInput : MonoBehaviour {
     private SpriteRenderer spriteRenderer = null;
     private Animations currentAnimation = Animations.STAND;
 
-
+    
     Vector2Int roundToGrid(Vector2 point)
     {
         return new Vector2Int(
@@ -54,6 +61,16 @@ public class PlayerInput : MonoBehaviour {
 
         animator = this.GetComponentInChildren<Animator>();
         spriteRenderer = this.GetComponentInChildren<SpriteRenderer>();
+
+        audioSource = this.GetComponent<AudioSource>();
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        audioSource.Stop();
+        audioSource.clip = clip;
+        audioSource.loop = false;
+        audioSource.Play();
     }
 
     Vector2 JumpDirection()
@@ -165,6 +182,7 @@ public class PlayerInput : MonoBehaviour {
         if (Input.GetButton("Jump") && jump_cooldown == 0) {
             Vector2 direction = JumpDirection();
             if (direction.magnitude > 0.01) {
+                PlaySound(Jump);
                 jump_cooldown = 3;
                 direction.y += 0.6f;
                 direction.Normalize();
@@ -205,13 +223,13 @@ public class PlayerInput : MonoBehaviour {
         if ((Viscera != null) && (Viscera.Length > 0) && (!isDead))
         {
             int randomInt = 0;
-            for (int i = 0; i < GenerateViceraOnDeathAmount; i++)
+            for (int i = 0; i < GenerateVisceraOnDeathAmount; i++)
             {
                 randomInt = Random.Range(0, Viscera.Length);
                 GameObject v = Instantiate(Viscera[randomInt]);
                 v.transform.position = this.transform.position;
                 v.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-20.0f, 20.0f), Random.Range(-20.0f, 20.0f));
-                Destroy(v, ViceraLifespan);
+                Destroy(v, VisceraLifespan);
             }
         }
 
@@ -222,6 +240,7 @@ public class PlayerInput : MonoBehaviour {
     }
 
     private void Dead() {
+        PlaySound(TombSound);
         // Check for game over
         if (Scoreboard.GetLives() == 0) {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Purgatory");
@@ -232,6 +251,7 @@ public class PlayerInput : MonoBehaviour {
         foreach (GameObject fin in GameObject.FindGameObjectsWithTag("Finish")) {
             BoxCollider2D box = fin.GetComponent<BoxCollider2D>();
             if (box != null && box.bounds.Contains(this.transform.position)) {
+                PlaySound(AltarDeath);
                 fin.GetComponent<LevelExit>().Exit();
                 return;
             }
@@ -254,12 +274,16 @@ public class PlayerInput : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
         isColliding = true;
 
         TrapCollider trap_script = collision.gameObject.GetComponent<TrapCollider>();
         if (trap_script != null)
         {
+            if (trap_script.DeathSound != null)
+                PlaySound(trap_script.DeathSound);
+            else 
+                PlaySound(GenericDeath);
+
             Debug.Log("Death by Trap");
             Die();
         }

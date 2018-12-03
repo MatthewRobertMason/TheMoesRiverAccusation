@@ -13,9 +13,6 @@ public class SpriteController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-
-        //sheets = Resources.FindObjectsOfTypeAll<Texture2D>();
-        
         DirectoryInfo dir = new DirectoryInfo(Application.dataPath + "/Resources/Sprites");
         FileInfo[] info = dir.GetFiles("*.png");
 
