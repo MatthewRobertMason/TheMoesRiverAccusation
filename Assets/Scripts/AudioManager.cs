@@ -25,8 +25,7 @@ public class AudioManager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        audioSource = this.GetComponent<AudioSource>();
-
+        audioSource = self.GetComponent<AudioSource>();
         audioSource.clip = purgatoryMusic;
         audioSource.loop = true;
         audioSource.Play();
@@ -34,9 +33,10 @@ public class AudioManager : MonoBehaviour
 	
     public void SwitchMusicToPurgatoryMusic()
     {
-        audioSource.Stop();
+        audioSource = self.GetComponent<AudioSource>();
         float time = 0.0f;
         time = audioSource.time;
+        audioSource.Stop();
         audioSource.clip = purgatoryMusic;
         audioSource.time = time;
         audioSource.Play();
@@ -44,9 +44,10 @@ public class AudioManager : MonoBehaviour
 
     public void SwitchMusicToCultMusic()
     {
-        audioSource.Stop();
+        audioSource = self.GetComponent<AudioSource>();
         float time = 0.0f;
         time = audioSource.time;
+        audioSource.Stop();
         audioSource.clip = cultMusic;
         audioSource.time = time;
         audioSource.Play();

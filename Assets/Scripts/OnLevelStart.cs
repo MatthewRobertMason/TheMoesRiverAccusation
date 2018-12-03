@@ -7,14 +7,16 @@ public class OnLevelStart : MonoBehaviour
     public bool isPurgatory = false;
 	
 	void Start ()
-    {
+    {        
+        AudioManager am = FindObjectOfType<AudioManager>();
+
         if (isPurgatory)
         {
-            FindObjectOfType<AudioManager>().SwitchMusicToPurgatoryMusic();
+            am.SwitchMusicToPurgatoryMusic();
         }
         else
         {
-            FindObjectOfType<AudioManager>().SwitchMusicToCultMusic();
+            am.SwitchMusicToCultMusic();
         }
 	}
 }
