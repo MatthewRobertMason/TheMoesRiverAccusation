@@ -33,7 +33,6 @@ public class PlayerInput : MonoBehaviour {
     public AudioClip TombSound;
     public AudioClip GenericDeath;
     public AudioClip AltarDeath;
-    public AudioClip Rescue;
     private AudioSource audioSource;
     private AudioClip deathSound;
 
