@@ -88,3 +88,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b902099b49d324686d496760158fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DeathSound: {fileID: 8300000, guid: e231458f4b27cdc4bb5872d0eec33d80, type: 3}
