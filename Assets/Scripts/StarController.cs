@@ -19,7 +19,7 @@ public class StarController : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        if (this.GetComponent<Rigidbody2D>().velocity.magnitude < 0.1) {
+        if (this.GetComponent<Rigidbody2D>().velocity.magnitude < 0.1 && timer < 1) {
             Destroy(gameObject);
         }
 	}
