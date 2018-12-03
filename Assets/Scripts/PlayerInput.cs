@@ -298,6 +298,20 @@ public class PlayerInput : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        TrapCollider trap_script = collision.gameObject.GetComponent<TrapCollider>();
+        if (trap_script != null) {
+            if (trap_script.DeathSound != null)
+                deathSound = trap_script.DeathSound;
+            else
+                deathSound = GenericDeath;
+
+            Debug.Log("Death by Trap");
+            Die();
+        }
+    }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         isColliding = false;
