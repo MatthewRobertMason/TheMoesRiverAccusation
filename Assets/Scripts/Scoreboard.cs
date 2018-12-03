@@ -12,6 +12,11 @@ public class Scoreboard : MonoBehaviour {
         return self.GetComponent<Scoreboard>();
     }
 
+    static public int GetDudeSaves()
+    {
+        return GetScoreboard().DudeSaves;
+    }
+
     static public int GetLives()
     {
         return GetScoreboard().Lives;
@@ -47,7 +52,7 @@ public class Scoreboard : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-
+    
     static public void Reset()
     {
         GetScoreboard().Lives = 10;

@@ -25963,7 +25963,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Alters Blessed
+  m_Text: Altars Blessed
 --- !u!222 &1676163340
 CanvasRenderer:
   m_ObjectHideFlags: 0

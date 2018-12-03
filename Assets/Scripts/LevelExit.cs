@@ -9,6 +9,15 @@ public class LevelExit : MonoBehaviour {
 
     public void Exit()
     {
+        if (NextLevel == "FindEnding")
+        {
+            // 34 Total Cultists                
+            if (Scoreboard.GetDudeSaves() >= 25)
+                NextLevel = "GoodEnding";
+            else
+                NextLevel = "Purgatory";
+        }
+
         Debug.LogFormat("Level finished, going to: {0}", NextLevel);
         Scoreboard.FinishLevel();
         if (Reset)

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Volume : MonoBehaviour
 {
     public Scrollbar volume;
+
     
 	// Use this for initialization
 	void Start ()
@@ -14,7 +15,8 @@ public class Volume : MonoBehaviour
         volume.value = FindObjectOfType<AudioManager>().GetComponent<AudioSource>().volume;
 
         // Make sure everything else has at least started
-        Invoke("setAudio", 0.1f);
+        //Invoke("setAudio", 0.1f);
+        setAudio();
 	}
 
     public void setAudio()
