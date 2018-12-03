@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ThirdMap.unity
     guid: 7150b57b77311d54ca221567a9c175fa
   - enabled: 1
+    path: Assets/Scenes/FourthMap.unity
+    guid: 75c3137e290d9574188c0be86c6ba708
+  - enabled: 1
     path: Assets/Scenes/NinthMap.unity
     guid: 8edbc87d5fa2c4d4184a9d3fb98b8501
   - enabled: 1
