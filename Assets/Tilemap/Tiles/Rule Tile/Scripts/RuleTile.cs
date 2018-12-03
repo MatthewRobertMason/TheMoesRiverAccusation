@@ -176,7 +176,8 @@ namespace UnityEngine
             var iden = Matrix4x4.identity;
 
             tileData.sprite = m_DefaultSprite;
-            tileData.gameObject = m_DefaultGameObject;
+            if(m_DefaultGameObject != null)
+                tileData.gameObject = Instantiate(m_DefaultGameObject, new Vector3(0, 0, 0), Quaternion.identity);
             tileData.colliderType = m_DefaultColliderType;
             tileData.flags = TileFlags.LockTransform;
             tileData.transform = iden;
