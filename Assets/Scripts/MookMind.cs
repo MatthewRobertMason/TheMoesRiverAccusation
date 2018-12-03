@@ -16,8 +16,10 @@ public class MookMind : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.GetComponent<PlayerInput>() != null) {
+        var player = collision.gameObject.GetComponent<PlayerInput>();
+        if (player != null) {
             Scoreboard.SaveMook();
+            player.PlaySound(player.Rescue);
             Destroy(gameObject);
         }
     }

@@ -33,6 +33,7 @@ public class PlayerInput : MonoBehaviour {
     public AudioClip TombSound;
     public AudioClip GenericDeath;
     public AudioClip AltarDeath;
+    public AudioClip Rescue;
     private AudioSource audioSource;
     private AudioClip deathSound;
 
@@ -58,7 +59,7 @@ public class PlayerInput : MonoBehaviour {
         deathSound = null;
     }
 
-    private void PlaySound(AudioClip clip)
+    public void PlaySound(AudioClip clip)
     {
         audioSource.Stop();
         audioSource.clip = clip;
