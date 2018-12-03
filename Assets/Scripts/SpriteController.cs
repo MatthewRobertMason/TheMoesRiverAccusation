@@ -14,42 +14,38 @@ public class SpriteController : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        DirectoryInfo dir = new DirectoryInfo(Application.dataPath + "/Resources/Sprites");
-        FileInfo[] info = dir.GetFiles("*.png");
+        //DirectoryInfo dir = new DirectoryInfo(Application.dataPath + "/Resources/Sprites");
+        //FileInfo[] info = dir.GetFiles("*.png");
 
-        foreach (FileInfo f in info)
+
+        Texture2D[] objs = Resources.LoadAll<Texture2D>("Sprites/");
+        foreach (Texture2D tex in objs)
         {
-            sheets.Add(f.Name.Substring(0, f.Name.Length-4));
+            Debug.Log("Name: " + tex.name);
+            sheets.Add(tex.name);
         }
+
+        //foreach (FileInfo f in info)
+        //{
+        //    sheets.Add(f.Name.Substring(0, f.Name.Length-4));
+        //}
 
         spriteIndex = Random.Range(0, sheets.Count);
         spriteSheetName = sheets[spriteIndex];
 
-        var subSprites = Resources.LoadAll<Sprite>("Sprites/" + spriteSheetName);
-
-        foreach (var renderer in GetComponentsInChildren<SpriteRenderer>())
-        {
-            Rect spriteRect = ((Sprite)renderer.sprite).rect;
-            var newSprite = System.Array.Find(subSprites, item => item.rect == spriteRect);
-
-            if (newSprite)
-            {
-                renderer.sprite = newSprite;
-
-                if (newSprite.rect == new Rect(0.0f, 72.0f, 16.0f, 24.0f))
-                {
-                    Image lives = GameObject.Find("LivesImage").GetComponent<Image>();
-                    lives.sprite = newSprite;
-                }
-            }
-        }
+        LoadSprite();
     }
 	
 	// Update is called once per frame
 	void LateUpdate ()
-    {     
+    {
+        LoadSprite();
+    }
+
+    void LoadSprite()
+    {
         var subSprites = Resources.LoadAll<Sprite>("Sprites/" + spriteSheetName);
-        
+
         foreach (var renderer in GetComponentsInChildren<SpriteRenderer>())
         {
             Rect spriteRect = ((Sprite)renderer.sprite).rect;
