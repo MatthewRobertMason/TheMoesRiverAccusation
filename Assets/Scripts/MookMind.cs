@@ -21,7 +21,8 @@ public class MookMind : MonoBehaviour {
         var player = collision.gameObject.GetComponent<PlayerInput>();
         if (player != null) {
             Scoreboard.SaveMook();
-            Instantiate(SoundObject, this.transform);
+            var sound = Instantiate(SoundObject);
+            sound.transform.position = this.transform.position;
             Destroy(gameObject);
         }
     }

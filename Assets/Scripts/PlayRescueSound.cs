@@ -9,6 +9,7 @@ public class PlayRescueSound : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        Debug.Log("Creating sound object");
         audioSource = GetComponent<AudioSource>();
         PlaySound(Rescue);
         Invoke("Remove", 5);
@@ -22,6 +23,7 @@ public class PlayRescueSound : MonoBehaviour {
 
     void Remove()
     {
+        Debug.Log("Removing sound object");
         Destroy(gameObject);
     }
 
