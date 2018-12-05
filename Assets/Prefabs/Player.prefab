@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4637510450227968}
   - component: {fileID: 20930255826865830}
   - component: {fileID: 81500964919362976}
+  - component: {fileID: 114053217575848312}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -327,6 +328,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114053217575848312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1202698711405300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AssetsPPU: 16
+  m_RefResolutionX: 256
+  m_RefResolutionY: 256
+  m_UpscaleRT: 1
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!114 &114284972413247678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -368,7 +388,6 @@ MonoBehaviour:
   TombSound: {fileID: 8300000, guid: 5e2ab9df6ab3a9a4cadb66f82794ee31, type: 3}
   GenericDeath: {fileID: 8300000, guid: fca8b2425161a354e8c91d1123d89d67, type: 3}
   AltarDeath: {fileID: 8300000, guid: 64c36c92006831d409acb1bdeaa211d3, type: 3}
-  Rescue: {fileID: 8300000, guid: 3dc4deeb82949444cbfb2af818afe7ad, type: 3}
 --- !u!212 &212307676368111768
 SpriteRenderer:
   m_ObjectHideFlags: 1
