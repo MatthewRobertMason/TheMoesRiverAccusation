@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrain: {fileID: 0}
-  tombTile: {fileID: 0}
+  tombTile: {fileID: 11400000, guid: 0db26fdf48b12b7478a822ffa36e0d24, type: 2}
   playerSpriteObject: {fileID: 1999309900865286}
   GenerateVisceraOnDeathAmount: 5
   VisceraLifespan: 15
