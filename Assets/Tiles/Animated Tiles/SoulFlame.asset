@@ -11,6 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
   m_Name: SoulFlame
   m_EditorClassIdentifier: 
+  m_DefaultGameObject: {fileID: 1584116117478844, guid: 0efe8bffa6ab8eb48ae5dbec8183cd0e,
+    type: 2}
   m_AnimatedSprites:
   - {fileID: 21300152, guid: 5fcc9d92e149c354ca40db10655a56d1, type: 3}
   - {fileID: 21300154, guid: 5fcc9d92e149c354ca40db10655a56d1, type: 3}

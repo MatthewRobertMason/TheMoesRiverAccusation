@@ -11,7 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
   m_Name: WallTorch
   m_EditorClassIdentifier: 
-  m_DefaultGameObject: {fileID: 0}
+  m_DefaultGameObject: {fileID: 1540090818859498, guid: 3fe275e1e3f999a4abfebd855a5535b2,
+    type: 2}
   m_AnimatedSprites:
   - {fileID: 21300314, guid: 5fcc9d92e149c354ca40db10655a56d1, type: 3}
   - {fileID: 21300316, guid: 5fcc9d92e149c354ca40db10655a56d1, type: 3}

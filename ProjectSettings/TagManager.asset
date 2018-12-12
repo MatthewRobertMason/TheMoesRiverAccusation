@@ -15,7 +15,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - VisualIgnore
   - 
   - 
   - 
@@ -51,4 +51,10 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 4138224837
+    locked: 0
+  - name: Lighting
+    uniqueID: 128201455
+    locked: 0
+  - name: Lighting2
+    uniqueID: 1306610703
     locked: 0
