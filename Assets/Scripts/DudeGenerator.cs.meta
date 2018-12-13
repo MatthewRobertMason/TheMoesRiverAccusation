@@ -1,12 +1,11 @@
 fileFormatVersion: 2
-guid: d6156b2bdf5cfe84c86092577eb8397b
+guid: eb4a75ec8c6df6849b149808f6a49e3c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - dudeTemplate: {instanceID: 0}
-  - dudeParts: {instanceID: 0}
-  - newTexture: {instanceID: 0}
+  - template: {fileID: 2800000, guid: 0953a35ef9c634c45848d2f045ada616, type: 3}
+  - parts: {fileID: 2800000, guid: bf6aa9fa8f1df5941b352d7327c66e69, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

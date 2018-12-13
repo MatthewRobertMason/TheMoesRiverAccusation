@@ -16,7 +16,7 @@ public class OnLevelStart : MonoBehaviour
             }
         }
         */
-
+       
         if (isGoodEnding == true)
         {
             Scoreboard.gameBeaten = true;
