@@ -297,6 +297,7 @@ public class PlayerInput : MonoBehaviour {
 
         this.transform.position = terrain.CellToWorld(start_point);
 
+        //playerSpriteObject.GetComponent<SpriteRenderer>().sprite = GetComponent<DudeGenerator>().Random();
         isDead = false;
     }
 
