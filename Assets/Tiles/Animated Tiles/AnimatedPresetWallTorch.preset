@@ -31,7 +31,7 @@ Preset:
   - target: {fileID: 0}
     propertyPath: m_DefaultGameObject
     value: 
-    objectReference: {fileID: 1540090818859498, guid: 3fe275e1e3f999a4abfebd855a5535b2,
+    objectReference: {fileID: 1359023394274164, guid: 94210197eba398340b7d835364f976cd,
       type: 2}
   - target: {fileID: 0}
     propertyPath: m_AnimatedSprites.Array.size

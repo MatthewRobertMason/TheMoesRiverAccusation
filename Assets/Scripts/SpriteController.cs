@@ -21,7 +21,7 @@ public class SpriteController : MonoBehaviour
         Texture2D[] objs = Resources.LoadAll<Texture2D>("Sprites/");
         foreach (Texture2D tex in objs)
         {
-            Debug.Log("Name: " + tex.name);
+            //Debug.Log("Name: " + tex.name);
             sheets.Add(tex.name);
         }
 

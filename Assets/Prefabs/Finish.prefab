@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4045558835092068}
   - component: {fileID: 61204511766111308}
   - component: {fileID: 114770708282336744}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Finish
   m_TagString: Finish
   m_Icon: {fileID: 0}
@@ -77,4 +77,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6fec1047d875cc4f9d83c9966a014bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextLevel: 
+  NextLevel: Map002
+  Reset: 0

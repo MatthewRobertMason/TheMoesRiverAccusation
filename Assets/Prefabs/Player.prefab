@@ -37,7 +37,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4637510450227968}
   - component: {fileID: 20930255826865830}
-  - component: {fileID: 81500964919362976}
   - component: {fileID: 114053217575848312}
   m_Layer: 0
   m_Name: Main Camera
@@ -95,7 +94,7 @@ GameObject:
   - component: {fileID: 61314645033795284}
   - component: {fileID: 212307676368111768}
   - component: {fileID: 95493842007965796}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -148,7 +147,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1720366547091050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.08, y: 2.36, z: 0}
+  m_LocalPosition: {x: 48.56, y: 44.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4459186465410252}
@@ -180,7 +179,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.0627451, g: 0.0627451, b: 0.0627451, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -260,7 +259,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.0627451, g: 0.0627451, b: 0.0627451, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -279,7 +278,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 279
+    m_Bits: 791
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -357,13 +356,6 @@ AudioListener:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1618154683140454}
-  m_Enabled: 1
---- !u!81 &81500964919362976
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1202698711405300}
   m_Enabled: 1
 --- !u!82 &82590773070592528
 AudioSource:

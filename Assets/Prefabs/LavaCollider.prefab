@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4855538694906996}
   - component: {fileID: 331202626613659296}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: New Sprite Mask (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4405540231359342}
   - component: {fileID: 331157875009587118}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: New Sprite Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4486120423421518}
   - component: {fileID: 331482023940622846}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: New Sprite Mask (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4362997918395602}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LavaEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4298280825835206}
   - component: {fileID: 331010592957136240}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: New Sprite Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4590053902662584}
   - component: {fileID: 331526902701190778}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: New Sprite Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4206623851579484}
   - component: {fileID: 331642946177702124}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: New Sprite Mask (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

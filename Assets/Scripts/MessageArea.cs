@@ -16,7 +16,7 @@ public class MessageArea : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player") {
-            Debug.Log("Entered Message area");
+            //Debug.Log("Entered Message area");
             displayArea.SetActive(true);
             textArea.GetComponent<UnityEngine.UI.Text>().text = Messages[Random.Range(0, Messages.Length)];
         }

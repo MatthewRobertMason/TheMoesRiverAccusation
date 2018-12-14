@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114900714720764378}
   - component: {fileID: 60491053097241436}
   - component: {fileID: 50868146931353912}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: SpikeCollider
   m_TagString: Trap
   m_Icon: {fileID: 0}
