@@ -146,7 +146,6 @@ public class PlayerInput : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate () {
-        if (jump_cooldown > 0) jump_cooldown--;
         float move = Input.GetAxis("Horizontal");
 
         if (Input.GetAxis("Horizontal") > 0)
@@ -165,37 +164,41 @@ public class PlayerInput : MonoBehaviour {
         }
 
         float target_speed = 10 * move;
-        float max_change = 50 * Time.fixedDeltaTime;
+        float max_change = 80 * Time.fixedDeltaTime;
 
+        //body.AddForce(new Vector2(target_speed, 0));
         body.velocity = new Vector2(
             Mathf.MoveTowards(body.velocity.x, target_speed, max_change),
             body.velocity.y
         );
 
+        if (jump_cooldown > 0) jump_cooldown--;
         if (Input.GetButton("Jump") && jump_cooldown == 0) {
+
             Vector2 direction = JumpDirection();
             if (direction.magnitude > 0.01) {
+                Debug.Log("JUMP");
                 PlaySound(Jump);
-                jump_cooldown = 3;
-                direction.y += 0.6f;
+                direction.y += 0.7f;
                 direction.Normalize();
-                direction.x *= 10f;
-                direction.y *= 10f;
-                body.velocity = body.velocity + direction;
-            }
+                direction.x *= 650f;
+                direction.y *= 650f;
+                body.AddForce(direction, ForceMode2D.Impulse);
+                jump_cooldown = 10;
+            } 
 
             if (!jumping)
             {
                 jumping = true;
             }
-        }
+        } 
 
         if (isColliding)
         {
             jumping = false;
         }
 
-        if (Input.GetButton("Die")) {
+        if (Input.GetButtonDown("Die")) {
             Die();
         }
     }
